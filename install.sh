@@ -39,3 +39,11 @@ mv ffmpeg ffmpeg.oem
 mv ffprobe ffprobe.oem
 ln -s /u01/GoogleDrive-VideoStream_extra/transcoders/emby_ffprobe.pl ffprobe
 ln -s /u01/GoogleDrive-VideoStream_extra/transcoders/emby_ffmpge.pl ffmpeg
+wget https://raw.githubusercontent.com/Thomvh/emby-strm/master/config/config.cfg
+
+# Start Emby
+echo "Starting Emby"
+systemctl start emby-server
+
+# Setup Scripts
+cd /u01/scripts
