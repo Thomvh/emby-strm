@@ -1,6 +1,6 @@
 #!/bin/bash
 # Install dependencies
-sudo apt-get -y install python-crypto acl libwww-perl unzip
+apt-get -y install python-crypto acl libwww-perl unzip
 
 # Make Directories
 echo "Making Directories"
@@ -47,4 +47,8 @@ echo "Starting Emby"
 systemctl start emby-server
 
 # Setup Scripts
-cd /u01/scripts
+echo "Install crons"
+crontab -l | { cat; echo "*/1 * * * * cd "/u01/GoogleDrive-VideoStream_extra/emby helpers/";perl monitor_videostream.pl -p 9988 -d /u01/Python-GoogleDrive-VideoStream/ -l videostream"; } | crontab -
+crontab -l | { cat; echo "*/1 * * * * cd "/u01/GoogleDrive-VideoStream_extra/emby helpers/";perl monitor_emby.pl -p 8096 -i emby-server -l emby"; } | crontab -
+
+exit 0
