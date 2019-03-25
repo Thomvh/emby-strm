@@ -1,5 +1,6 @@
 #!/bin/bash
-apt install unzip
+# Install dependencies
+sudo apt-get -y install python-crypto acl libwww-perl unzip
 
 # Make Directories
 echo "Making Directories"
