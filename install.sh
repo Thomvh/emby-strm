@@ -11,6 +11,7 @@ mkdir /u01/emby-cache
 mkdir /u01/emby-metadata
 mkdir /u01/emby-bk
 mkdir /u01/scripts
+chown -R root:emby /u01
 
 # Install Repo's
 echo "Installing Repo's"
@@ -47,7 +48,7 @@ echo "Starting Emby"
 systemctl start emby-server
 
 # Setup Scripts
-echo "Install crons"
+echo "Install cronjobs"
 crontab -l | { cat; echo "*/1 * * * * cd "/u01/GoogleDrive-VideoStream_extra/emby helpers/";perl monitor_videostream.pl -p 9988 -d /u01/Python-GoogleDrive-VideoStream/ -l videostream"; } | crontab -
 crontab -l | { cat; echo "*/1 * * * * cd "/u01/GoogleDrive-VideoStream_extra/emby helpers/";perl monitor_emby.pl -p 8096 -i emby-server -l emby"; } | crontab -
 
